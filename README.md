@@ -1,6 +1,6 @@
 # ReqresApp
 
-this is a project for the React Native Developer test for Insperio Company
+This is a project for the React Native Developer test for Insperio Company
 
 ## How to start
 
@@ -8,7 +8,7 @@ In the project directory, you can run:
 
 ### `npm install`
 
-installs all modules listed as dependencies in package.json
+Installs all modules listed as dependencies in package.json
 
 ### `react-native run-android`
 
