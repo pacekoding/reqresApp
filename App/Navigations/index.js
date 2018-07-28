@@ -16,6 +16,6 @@ export default AppNavigator = StackNavigator(
   },
   {
     headerMode: 'none',
-    initialRouteName: 'ListScreen',
+    initialRouteName: 'HomeScreen',
   }
 )

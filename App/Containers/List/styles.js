@@ -12,18 +12,23 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     margin: 10,
   },
+  title: {
+    justifyContent:'center',
+    alignItems: 'center',
+    width: 100,
+    height: 40,
+  },
   button: {
-    width: 250,
-    height: 50,
+    width: 60,
+    height: 40,
     borderRadius: 5,
     backgroundColor: '#3498db',
     justifyContent: 'center',
     alignItems: 'center',
-    margin: 10,
   },
   buttonText: {
     color: '#fff',
-    fontSize: 16
+    fontSize: 14
   },
   modalContainer: {
     flex:1,
@@ -37,7 +42,12 @@ const styles = StyleSheet.create({
   header: {
     paddingTop: 20,
     paddingLeft: 16,
-    paddingBottom: 16
+    paddingRight: 16,
+    paddingBottom: 16,
+    backgroundColor: '#3498db',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   buttonClose : {
     width: '100%',
@@ -52,16 +62,16 @@ const styles = StyleSheet.create({
   itemContainer: {
     width: '100%',
     padding: 16,
-    flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     borderTopColor: '#3498db',
     borderTopWidth: 1,
+    backgroundColor: '#fff'
   },
   titleText: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#000000',
+    color: '#fff',
     marginTop: 2
   },
   descText: {
@@ -70,12 +80,18 @@ const styles = StyleSheet.create({
     marginTop: 2
   },
   image: {
-    width: 80,
-    height: 80,
-    borderRadius: 80/2,
+    width: 200,
+    height: 200,
+    borderRadius: 5,
     justifyContent: 'center',
     alignItems:'center'
-  }
+  },
+  nameText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#000000',
+    marginTop: 2
+  },
 });
 
 export default styles

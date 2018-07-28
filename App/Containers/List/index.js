@@ -3,7 +3,8 @@ import {
   Text,
   View,
   Image,
-  FlatList
+  FlatList,
+  TouchableOpacity
 } from 'react-native'
 
 import Data from '@data'
@@ -15,26 +16,7 @@ class List extends Component {
 
   state = {
     visible: false,
-    data: [
-      {
-            "id": 1,
-            "first_name": "George",
-            "last_name": "Bluth",
-            "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/calebogden/128.jpg"
-        },
-        {
-            "id": 2,
-            "first_name": "Janet",
-            "last_name": "Weaver",
-            "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128.jpg"
-        },
-        {
-            "id": 3,
-            "first_name": "Emma",
-            "last_name": "Wong",
-            "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/olegpogodaev/128.jpg"
-        }
-    ]
+    url: 'https://reqres.in/api/users?page=1'
   }
 
   _handleModal(){
@@ -47,8 +29,8 @@ class List extends Component {
       return (
         <View style={styles.itemContainer}>
           <Image style={styles.image} source={{uri: item.avatar}} />
-          <View style={{flex:1}}>
-            <Text style={styles.titleText}>{item.first_name} {item.last_name}</Text>
+          <View style={{flex:1, marginTop:20}}>
+            <Text style={styles.nameText}>{item.first_name} {item.last_name}</Text>
           </View>
         </View>
       )
@@ -56,17 +38,24 @@ class List extends Component {
 
   _keyExtractor = (item) => String(item.id)
 
-  _renderContent = ({data: {data}}) => {
+  _renderContent = ({data}) => {
     return (
         <View style={styles.bodyContainer}>
           <View style={styles.header}>
-            <Text style={styles.titleText}>LIST USER</Text>
+            <View style={styles.title}>
+              <Text style={styles.titleText}>LIST USER</Text>
+            </View>
+            <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.goBack()}>
+              <Text style={styles.buttonText}>HOME</Text>
+            </TouchableOpacity>
           </View>
           <FlatList
             data={data.data}
-            extraData={this.state.data}
             keyExtractor={this._keyExtractor}
             renderItem={this._renderItem}
+            onEndReached={() => {
+              this.setState({url:`https://reqres.in/api/users?page=${data.page+1}`})
+            }}
           />
         </View>
     )
@@ -74,11 +63,11 @@ class List extends Component {
 
 
   render() {
-    const { visible} = this.state
+    const { visible, url} = this.state
     return (
       <View style={styles.container}>
         <Data
-          url={'https://reqres.in/api/users?page=1'}
+          url={url}
           render={this._renderContent}
           renderLoading={this._renderLoading}
         />

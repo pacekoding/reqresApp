@@ -22,14 +22,33 @@ class Data extends Component {
     isLoading: true,
   }
 
-  async componentDidMount() {
-    await this._fetchRemoteData()
+  componentDidMount() {
+    this._fetchRemoteData()
+  }
+
+  componentDidUpdate(prevProps) {
+    if(prevProps.url!==this.props.url) {
+      console.log('masuk sini');
+        this._fetchRemoteData()
+    }
   }
 
   _fetchRemoteData = async () => {
       const {url,body,method} = this.props
       try{
         const data = await xhr(url,body,method)
+        if(this.state.data) {
+          this.setState(prevState => {
+            let newData= prevState.data
+            newData.data.page = data.data.page
+            newData.data.data = [...newData.data.data, ...data.data.data]
+            return {
+              data:newData,
+              isLoading: false,
+            }
+          })
+        }
+        else
         this.setState({ data, isLoading: false })
       }
       catch(e) {
