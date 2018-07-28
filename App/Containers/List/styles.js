@@ -3,12 +3,17 @@ import {StyleSheet} from 'react-native'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  menuContainer: {
-    width: 200,
+  textInput: {
+    height: 50,
+    width: 250,
+    borderColor: '#3498db',
+    borderWidth: 1,
+    margin: 10,
+  },
+  button: {
+    width: 250,
     height: 50,
     borderRadius: 5,
     backgroundColor: '#3498db',
@@ -16,10 +21,60 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     margin: 10,
   },
-  menuText: {
-    fontSize: 14,
+  buttonText: {
     color: '#fff',
-    fontWeight: 'bold'
+    fontSize: 16
+  },
+  modalContainer: {
+    flex:1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.7)'
+  },
+  bodyContainer: {
+    flex:1,
+  },
+  header: {
+    paddingTop: 20,
+    paddingLeft: 16,
+    paddingBottom: 16
+  },
+  buttonClose : {
+    width: '100%',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+    padding: 12
+  },
+  closeText: {
+    color: '#ffff',
+    fontSize: 14
+  },
+  itemContainer: {
+    width: '100%',
+    padding: 16,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderTopColor: '#3498db',
+    borderTopWidth: 1,
+  },
+  titleText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#000000',
+    marginTop: 2
+  },
+  descText: {
+    fontSize: 14,
+    color: '#565656',
+    marginTop: 2
+  },
+  image: {
+    width: 80,
+    height: 80,
+    borderRadius: 80/2,
+    justifyContent: 'center',
+    alignItems:'center'
   }
 });
 

@@ -23,6 +23,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     margin: 10,
   },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16
+  },
   modalContainer: {
     flex:1,
     alignItems: 'center',
@@ -72,7 +76,9 @@ const styles = StyleSheet.create({
   circle: {
     width: 50,
     height: 50,
-    borderRadius: 50/2
+    borderRadius: 50/2,
+    justifyContent: 'center',
+    alignItems:'center'
   }
 });
 

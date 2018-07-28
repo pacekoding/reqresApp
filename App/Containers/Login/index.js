@@ -8,6 +8,7 @@ import {
 } from 'react-native'
 
 import Data from '@data'
+import Loading from '@loading'
 
 import styles from './styles'
 
@@ -20,6 +21,8 @@ class Login extends Component {
   _handleModal(){
     this.setState(({visible}) => ({visible: !visible}))
   }
+
+  _renderLoading = () => (<Loading />)
 
   _renderContent = ({data: {data}}) => {
     return (
@@ -39,7 +42,9 @@ class Login extends Component {
               data.data.map((item,index) => {
                 return (
                   <View key={String(index)} style={styles.itemContainer}>
-                    <View style={[styles.circle,{backgroundColor:item.color}]}/>
+                    <View style={[styles.circle,{backgroundColor:item.color}]}>
+                      <Text style={[styles.titleText,{color:'#fff', fontSize:20}]}>{item.name[0].toUpperCase()}</Text>
+                    </View>
                     <Text style={styles.titleText}>{item.name}</Text>
                     <View>
                       <Text style={styles.descText}>{item.pantone_value}</Text>
@@ -81,7 +86,10 @@ class Login extends Component {
         />
 
         <TouchableOpacity style={styles.button} onPress={() => this._handleModal()}>
-          <Text style={styles.menuText}>LOGIN</Text>
+          <Text style={styles.buttonText}>LOGIN</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.goBack()}>
+          <Text style={styles.buttonText}>HOME</Text>
         </TouchableOpacity>
 
         <Modal
@@ -94,6 +102,7 @@ class Login extends Component {
             <Data
               url={'https://reqres.in/api/login'}
               render={this._renderContent}
+              renderLoading={this._renderLoading}
             />
           </View>
         </Modal>

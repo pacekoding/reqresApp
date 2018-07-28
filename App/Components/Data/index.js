@@ -1,4 +1,4 @@
-import React from "react"
+import React, {Component} from "react"
 import {
   View,
   Text,
@@ -9,7 +9,7 @@ import xhr from "@services"
 
 import styles from './styles'
 
-class Data extends React.Component {
+class Data extends Component {
 
   state = {
     data: null,
