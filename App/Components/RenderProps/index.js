@@ -9,7 +9,7 @@ import xhr from "@services"
 
 import styles from './styles'
 
-class Data extends Component {
+class RenderProps extends Component {
 
   static defaultProps = {
     method: 'GET',
@@ -93,4 +93,4 @@ class Data extends Component {
   }
 }
 
-export default Data
+export default RenderProps

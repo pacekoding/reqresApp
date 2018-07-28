@@ -7,7 +7,7 @@ import {
   Modal
 } from 'react-native'
 
-import RenderProps from '@data'
+import RenderProps from '@renderProps'
 import Loading from '@loading'
 
 import styles from './styles'

@@ -7,7 +7,7 @@ import {
   TouchableOpacity
 } from 'react-native'
 
-import Data from '@data'
+import RenderProps from '@renderProps'
 import Loading from '@loading'
 
 import styles from './styles'
@@ -66,7 +66,7 @@ class List extends Component {
     const { visible, url} = this.state
     return (
       <View style={styles.container}>
-        <Data
+        <RenderProps
           url={url}
           render={this._renderContent}
           renderLoading={this._renderLoading}
