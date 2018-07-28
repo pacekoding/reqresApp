@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   textInput: {
     height: 50,
     width: 250,
-    borderColor: 'gray',
+    borderColor: '#3498db',
     borderWidth: 1,
     margin: 10,
   },
@@ -23,12 +23,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     margin: 10,
   },
-  text: {
-    color: '#D50000',
-    fontSize: 10,
-    padding: 2,
-    fontWeight: 'bold'
-  },
   modalContainer: {
     flex:1,
     alignItems: 'center',
@@ -37,8 +31,7 @@ const styles = StyleSheet.create({
   },
   bodyContainer: {
     width: '100%',
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
+    borderRadius: 10,
     backgroundColor: '#FFFFFF'
   },
   headerModal: {
@@ -57,10 +50,16 @@ const styles = StyleSheet.create({
     fontSize: 14
   },
   itemContainer: {
-    height: 62
+    width: '100%',
+    padding: 16,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderTopColor: '#3498db',
+    borderTopWidth: 1,
   },
   titleText: {
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: 'bold',
     color: '#000000',
     marginTop: 2
@@ -70,12 +69,11 @@ const styles = StyleSheet.create({
     color: '#565656',
     marginTop: 2
   },
-  rowTitle: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    color: '#201717',
-    marginTop: 2
-  },
+  circle: {
+    width: 50,
+    height: 50,
+    borderRadius: 50/2
+  }
 });
 
 export default styles

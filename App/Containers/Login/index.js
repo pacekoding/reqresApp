@@ -22,8 +22,6 @@ class Login extends Component {
   }
 
   _renderContent = ({data: {data}}) => {
-    console.log('data',data)
-
     return (
       <Fragment>
         <TouchableOpacity
@@ -37,6 +35,20 @@ class Login extends Component {
             <Text style={styles.descText}>Details</Text>
           </View>
           <View>
+            {
+              data.data.map((item,index) => {
+                return (
+                  <View key={String(index)} style={styles.itemContainer}>
+                    <View style={[styles.circle,{backgroundColor:item.color}]}/>
+                    <Text style={styles.titleText}>{item.name}</Text>
+                    <View>
+                      <Text style={styles.descText}>{item.pantone_value}</Text>
+                      <Text style={styles.descText}>{item.year}</Text>
+                    </View>
+                  </View>
+                )
+              })
+            }
           </View>
         </View>
       </Fragment>
