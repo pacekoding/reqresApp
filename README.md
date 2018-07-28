@@ -1,6 +1,6 @@
 # ReqresApp
 
-this is a repository for React Native test from Glints
+this is a project for the React Native Developer test for Insperio Company
 
 ## How to start
 
