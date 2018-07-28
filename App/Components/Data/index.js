@@ -11,6 +11,12 @@ import styles from './styles'
 
 class Data extends Component {
 
+  static defaultProps = {
+    method: 'GET',
+    body: {},
+    url: ''
+  }
+
   state = {
     data: null,
     isLoading: true,
@@ -21,9 +27,15 @@ class Data extends Component {
   }
 
   _fetchRemoteData = async () => {
-      const {url} = this.props
-      const data = await xhr(url, 'GET')
-      this.setState({ data, isLoading: false })
+      const {url,body,method} = this.props
+      try{
+        const data = await xhr(url,body,method)
+        this.setState({ data, isLoading: false })
+      }
+      catch(e) {
+        this.setState({ data:e.response, isLoading: false })
+      }
+
   }
 
   _renderNull = () => null
@@ -31,14 +43,7 @@ class Data extends Component {
   _renderError = err => {
     const {renderError} = this.props
 
-    return renderError ? renderError(err) :
-    (
-      <View style={styles.container}>
-          <Text>Sorry, there was an error.</Text>
-          <Text>Please try again in another time.</Text>
-          <TouchableOpacity onPress={this._fetchRemoteData}><Text style={{color:'#0EC655'}}>try again.</Text></TouchableOpacity>
-      </View>
-    )
+    return renderError ? renderError(err) : this._renderNull()
   }
 
   _renderLoading = () => {
@@ -59,13 +64,13 @@ class Data extends Component {
     const isErrored = data && data.status !== 200 ? true : false
 
     if (isErrored) {
-      return this._renderError({ error: data, reload: this.fetchRemoteData })
+      return this._renderError(data)
     }
     if (isLoading) {
       return this._renderLoading()
     }
 
-    return render({data, reload: this.fetchRemoteData})
+    return render(data)
   }
 }
 

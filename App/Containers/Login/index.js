@@ -7,7 +7,7 @@ import {
   Modal
 } from 'react-native'
 
-import Data from '@data'
+import RenderProps from '@data'
 import Loading from '@loading'
 
 import styles from './styles'
@@ -15,7 +15,9 @@ import styles from './styles'
 class Login extends Component {
 
   state = {
-    visible: false
+    visible: false,
+    password: '',
+    email: ''
   }
 
   _handleModal(){
@@ -24,7 +26,8 @@ class Login extends Component {
 
   _renderLoading = () => (<Loading />)
 
-  _renderContent = ({data: {data}}) => {
+  _renderContent = (data) => {
+    console.log('data',data);
     return (
       <Fragment>
         <TouchableOpacity
@@ -35,25 +38,15 @@ class Login extends Component {
         <View style={styles.bodyContainer}>
           <View style={styles.headerModal}>
             <Text style={styles.titleText}>SUCCESS</Text>
-            <Text style={styles.descText}>Details</Text>
+            <View style={{marginTop:20,justifyContent:'center', alignItems: 'center'}}>
+              <Text style={styles.descText}>{data.data.token}</Text>
+              <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.goBack()}>
+                <Text style={styles.buttonText}>HOME</Text>
+              </TouchableOpacity>
+            </View>
           </View>
           <View>
-            {
-              data.data.map((item,index) => {
-                return (
-                  <View key={String(index)} style={styles.itemContainer}>
-                    <View style={[styles.circle,{backgroundColor:item.color}]}>
-                      <Text style={[styles.titleText,{color:'#fff', fontSize:20}]}>{item.name[0].toUpperCase()}</Text>
-                    </View>
-                    <Text style={styles.titleText}>{item.name}</Text>
-                    <View>
-                      <Text style={styles.descText}>{item.pantone_value}</Text>
-                      <Text style={styles.descText}>{item.year}</Text>
-                    </View>
-                  </View>
-                )
-              })
-            }
+
           </View>
         </View>
       </Fragment>
@@ -61,35 +54,59 @@ class Login extends Component {
 
   }
 
+  _renderError = (error) => {
+    return (
+      <Fragment>
+        <TouchableOpacity
+          style={styles.buttonClose}
+          onPress={() => this._handleModal()}>
+          <Text style={styles.closeText}>CLOSE</Text>
+        </TouchableOpacity>
+        <View style={styles.bodyContainer}>
+          <View style={styles.headerModal}>
+            <Text style={styles.titleErrorText}>ERROR</Text>
+            <View style={{marginTop:20,justifyContent:'center', alignItems: 'center'}}>
+              <Text style={styles.errorText}>{error.data.error}</Text>
+            </View>
+          </View>
+          <View>
+          </View>
+        </View>
+      </Fragment>
+    )
+
+  }
 
   render() {
 
-    const { visible} = this.state
+    const {
+      visible,
+      email,
+      password
+    } = this.state
+
     return (
       <View style={styles.container}>
 
         <TextInput
           style={styles.textInput}
-          placeholder={'type anything for username'}
+          placeholder={'type anything for email'}
           placeholderTextColor={'#bdc3c7'}
-          textContentType={"username"}
           underlineColorAndroid={"transparent"}
+          onChangeText={(email) => this.setState({email})}
         />
 
         <TextInput
           style={styles.textInput}
           placeholder={'type anything for password'}
           placeholderTextColor={'#bdc3c7'}
-          textContentType={"password"}
           secureTextEntry={true}
           underlineColorAndroid={"transparent"}
+          onChangeText={(password) => this.setState({password})}
         />
 
         <TouchableOpacity style={styles.button} onPress={() => this._handleModal()}>
           <Text style={styles.buttonText}>LOGIN</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.goBack()}>
-          <Text style={styles.buttonText}>HOME</Text>
         </TouchableOpacity>
 
         <Modal
@@ -99,10 +116,13 @@ class Login extends Component {
           onRequestClose={() => this._handleModal()}>
 
           <View style={styles.modalContainer}>
-            <Data
+            <RenderProps
               url={'https://reqres.in/api/login'}
+              body={{email,password}}
+              method={'POST'}
               render={this._renderContent}
               renderLoading={this._renderLoading}
+              renderError = {this._renderError}
             />
           </View>
         </Modal>

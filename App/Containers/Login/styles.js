@@ -73,13 +73,17 @@ const styles = StyleSheet.create({
     color: '#565656',
     marginTop: 2
   },
-  circle: {
-    width: 50,
-    height: 50,
-    borderRadius: 50/2,
-    justifyContent: 'center',
-    alignItems:'center'
-  }
+  titleErrorText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#000000',
+    marginTop: 2
+  },
+  errorText: {
+    fontSize: 14,
+    color: '#95a5a6',
+    marginTop: 2
+  },
 });
 
 export default styles
